@@ -70,6 +70,7 @@ const data = [
         Leech Life Seismitoad Ariados. Earthquake Pokemon Glitch City Tail Whip Skitty Ekans Dialga. Ut aliquip ex ea commodo consequat James 
         Castform Lotad the power that's inside Burnt Berry Makuhita. Ghost Ariados Corphish Dusclops Golbat Gligar Zweilous.`
   },
+
   {
     title: 'Professional Software Development in 2019',
     date: 'Jan 1st, 2019',
@@ -86,6 +87,8 @@ const data = [
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
   }
+
+  
 ];
 
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
@@ -112,3 +115,59 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+
+function dataCompilation (titleData , dateData, firstParagraphData , secondParagraphData , thirdParagraphData) {
+
+//this is for the article div (1)
+   const article = document.createElement ('div');
+      article.classList.add('article');
+
+//this is for the h3 div 
+  const title = document.createElement ('h2'); 
+    title.textContent = titleData;        
+
+//this is for the date div 
+  const date = document.createElement ('p');
+      date.textContent = dateData;
+      date.classList.add('date');
+
+//this is for the three different paragraphs 
+  const firstParagraph = document.createElement ('p');
+  firstParagraph.textContent = firstParagraphData;
+
+    const secondParagraph = document.createElement ('p');
+    secondParagraph.textContent = secondParagraphData;
+    
+    const thirdParagraph = document.createElement ('p');
+    thirdParagraph.textContent = thirdParagraphData;  
+
+
+  //this is going to be for the button
+  const expandButton = document.createElement('span');
+    expandButton.classList.add('expandButton')
+    expandButton.textContent = ('click here to expand')
+    expandButton.addEventListener('click', (event) => {
+      article.classList.toggle('article-open');
+      
+    })
+    
+    article.appendChild(title)
+    article.appendChild(date)
+    article.appendChild(firstParagraph)
+    article.appendChild(secondParagraph)
+    article.appendChild(thirdParagraph)
+    article.appendChild(expandButton)
+    return article;
+  }
+
+
+  const articles = document.querySelector('.articles');
+    data.map((dataObject) =>{
+    const allData = dataCompilation(dataObject.title, dataObject.date, dataObject.firstParagraph, dataObject.secondParagraph, dataObject.thirdParagraph);
+    console.log(dataObject)
+    articles.appendChild(allData);
+    
+  })
+
+  console.log(articles);
